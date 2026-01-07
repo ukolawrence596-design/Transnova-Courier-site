@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Login - TransNova Courier</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Inter:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="admin.css" />
+    </head>
+    <body class="login-page">
+        <div class="login-container">
+            <a href="../index.html" class="back-home-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                <span>Back to Home</span>
+            </a>
+            <div class="login-box">
+                <div class="logo-section">
+                    <img
+                        src="../images/logo.png"
+                        alt="TransNova Logo"
+                        class="admin-logo"
+                    />
+                    <h1>TransNova Admin</h1>
+                    <p>Secure Access Portal</p>
+                </div>
+
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="email">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                                ></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            Email Address
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="admin@transnova.com"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <rect
+                                    x="3"
+                                    y="11"
+                                    width="18"
+                                    height="11"
+                                    rx="2"
+                                    ry="2"
+                                ></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe" />
+                            <span>Remember me</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-login" id="loginBtn">
+                        <span>Sign In</span>
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+
+                    <div
+                        id="errorMessage"
+                        class="error-message"
+                        style="display: none"
+                    ></div>
+                </form>
+
+                <div class="login-footer">
+                    <p>🔒 Secured by Firebase Authentication</p>
+                </div>
+            </div>
+
+            <div class="background-animation">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+            </div>
+        </div>
+
+        <!-- Firebase SDK -->
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+        <!-- Firebase Config -->
+        <script>
+            // REPLACE WITH YOUR ACTUAL CONFIG
+            const firebaseConfig = {
+                apiKey: "AIzaSyBezEo8agPiNcIQfvNlc_pgbmsIFuMKvKI",
+                authDomain: "transnova-courier.firebaseapp.com",
+                databaseURL:
+                    "https://transnova-courier-default-rtdb.firebaseio.com",
+                projectId: "transnova-courier",
+                storageBucket: "transnova-courier.firebasestorage.app",
+                messagingSenderId: "1056361776460",
+                appId: "1:1056361776460:web:ca3d01062bb69ccdc0fbe9",
+            };
+
+            let auth;
+            let authCheckComplete = false;
+
+            try {
+                firebase.initializeApp(firebaseConfig);
+                auth = firebase.auth();
+                console.log("✅ Firebase initialized");
+            } catch (error) {
+                console.error("❌ Firebase error:", error);
+            }
+
+            // Check if already logged in (ONLY ONCE)
+            auth.onAuthStateChanged((user) => {
+                if (!authCheckComplete) {
+                    authCheckComplete = true;
+                    if (user) {
+                        console.log(
+                            "✅ User already logged in, redirecting...",
+                        );
+                        window.location.href = "dashboard.html";
+                    } else {
+                        console.log("ℹ️ No user logged in");
+                    }
+                }
+            });
+
+            // Login Form Handler
+            document
+                .getElementById("loginForm")
+                .addEventListener("submit", async (e) => {
+                    e.preventDefault();
+
+                    const email = document.getElementById("email").value;
+                    const password = document.getElementById("password").value;
+                    const loginBtn = document.getElementById("loginBtn");
+                    const errorMessage =
+                        document.getElementById("errorMessage");
+
+                    // Show loading
+                    loginBtn.disabled = true;
+                    loginBtn.innerHTML = "<span>Signing In...</span>";
+                    errorMessage.style.display = "none";
+
+                    try {
+                        await auth.signInWithEmailAndPassword(email, password);
+                        console.log("✅ Login successful");
+                        // Redirect will happen automatically via onAuthStateChanged
+                    } catch (error) {
+                        console.error("❌ Login error:", error);
+                        errorMessage.textContent = error.message;
+                        errorMessage.style.display = "block";
+                        loginBtn.disabled = false;
+                        loginBtn.innerHTML =
+                            '<span>Sign In</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
+                    }
+                });
+        </script>
+    </body>
+</html>

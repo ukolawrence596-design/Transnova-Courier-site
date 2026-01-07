@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Dashboard - TransNova Courier</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Inter:wght@400;600;700&family=Black+Ops+One&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="admin.css" />
+    </head>
+    <body class="dashboard-page">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img
+                    src="../images/logo.png"
+                    alt="TransNova Logo"
+                    class="sidebar-logo"
+                />
+                <h2>TransNova Admin</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-view="overview">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>Overview</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="create">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>Create Tracking</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="list">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path
+                            d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                        ></path>
+                        <rect
+                            x="8"
+                            y="2"
+                            width="8"
+                            height="4"
+                            rx="1"
+                            ry="1"
+                        ></rect>
+                    </svg>
+                    <span>All Parcels</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="update">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path
+                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                        ></path>
+                        <path
+                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                        ></path>
+                    </svg>
+                    <span>Update Status</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="invoice">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span>Invoice</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn-logout" id="logoutBtn">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path
+                            d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+                        ></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1 id="pageTitle">Dashboard Overview</h1>
+                <div class="admin-info">
+                    <span id="adminEmail">Admin</span>
+                    <div class="admin-avatar">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                            />
+                        </svg>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Views -->
+            <div class="content-container">
+                <!-- Overview View -->
+                <section id="overviewView" class="view-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div
+                                class="stat-icon"
+                                style="
+                                    background: linear-gradient(
+                                        135deg,
+                                        #667eea 0%,
+                                        #764ba2 100%
+                                    );
+                                "
+                            >
+                                <svg
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="white"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                                    ></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalParcels">0</h3>
+                                <p>Total Parcels</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div
+                                class="stat-icon"
+                                style="
+                                    background: linear-gradient(
+                                        135deg,
+                                        #f093fb 0%,
+                                        #f5576c 100%
+                                    );
+                                "
+                            >
+                                <svg
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="white"
+                                    stroke-width="2"
+                                >
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline
+                                        points="12 6 12 12 16 14"
+                                    ></polyline>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="inTransit">0</h3>
+                                <p>In Transit</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div
+                                class="stat-icon"
+                                style="
+                                    background: linear-gradient(
+                                        135deg,
+                                        #4facfe 0%,
+                                        #00f2fe 100%
+                                    );
+                                "
+                            >
+                                <svg
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="white"
+                                    stroke-width="2"
+                                >
+                                    <polyline
+                                        points="20 6 9 17 4 12"
+                                    ></polyline>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="delivered">0</h3>
+                                <p>Delivered</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div
+                                class="stat-icon"
+                                style="
+                                    background: linear-gradient(
+                                        135deg,
+                                        #fa709a 0%,
+                                        #fee140 100%
+                                    );
+                                "
+                            >
+                                <svg
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="white"
+                                    stroke-width="2"
+                                >
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="pending">0</h3>
+                                <p>Pending</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h2>Recent Activity</h2>
+                        <div class="activity-list" id="recentActivity">
+                            <!-- Activity items will be loaded here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Create Tracking View -->
+                <section id="createView" class="view-section">
+                    <div class="form-card">
+                        <h2>Create New Tracking Code</h2>
+                        <form id="createTrackingForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Tracking Code</label>
+                                    <div class="input-with-button">
+                                        <input
+                                            type="text"
+                                            id="trackingCode"
+                                            readonly
+                                        />
+                                        <button
+                                            type="button"
+                                            class="btn-generate"
+                                            onclick="generateNewCode()"
+                                        >
+                                            Generate
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Sender Information</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Sender Name</label>
+                                        <input
+                                            type="text"
+                                            id="senderName"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sender Email</label>
+                                        <input
+                                            type="email"
+                                            id="senderEmail"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Sender Phone</label>
+                                        <input
+                                            type="tel"
+                                            id="senderPhone"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sender Address</label>
+                                        <input
+                                            type="text"
+                                            id="senderAddress"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Receiver Information</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Receiver Name</label>
+                                        <input
+                                            type="text"
+                                            id="receiverName"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Receiver Email</label>
+                                        <input
+                                            type="email"
+                                            id="receiverEmail"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Receiver Phone</label>
+                                        <input
+                                            type="tel"
+                                            id="receiverPhone"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Receiver Address</label>
+                                        <input
+                                            type="text"
+                                            id="receiverAddress"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Shipment Details</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Shipping Company</label>
+                                        <input
+                                            type="text"
+                                            id="shippingCompany"
+                                            value="AirLift Courier Services"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Shipping Country</label>
+                                        <input
+                                            type="text"
+                                            id="shippingCountry"
+                                            value="Turkey"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Current Status</label>
+                                        <select id="status" required>
+                                            <option value="">
+                                                Select Status
+                                            </option>
+                                            <option value="pending">
+                                                Pending Pickup
+                                            </option>
+                                            <option value="collected">
+                                                Collected
+                                            </option>
+                                            <option value="in-transit">
+                                                In Transit
+                                            </option>
+                                            <option value="on-hold">
+                                                On Hold
+                                            </option>
+                                            <option value="out-for-delivery">
+                                                Out for Delivery
+                                            </option>
+                                            <option value="delivered">
+                                                Delivered
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Current Location</label>
+                                        <input
+                                            type="text"
+                                            id="location"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Estimated Delivery</label>
+                                        <input
+                                            type="date"
+                                            id="estimatedDelivery"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Package Weight (kg)</label>
+                                        <input
+                                            type="number"
+                                            step="0.01"
+                                            id="weight"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Shipping Service</label>
+                                        <select id="shippingService">
+                                            <option value="Freight">
+                                                Freight
+                                            </option>
+                                            <option value="Express">
+                                                Express
+                                            </option>
+                                            <option value="Standard">
+                                                Standard
+                                            </option>
+                                            <option value="Economy">
+                                                Economy
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Package Type</label>
+                                        <input
+                                            type="text"
+                                            id="packageType"
+                                            value="Package"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Departure Date</label>
+                                        <input type="date" id="departureDate" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Package Description</label>
+                                        <input
+                                            type="text"
+                                            id="packageDescription"
+                                            placeholder="Brief description"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Shipping History Entry</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Arrival Date</label>
+                                        <input type="date" id="arrivalDate" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Delivery Date</label>
+                                        <input type="date" id="deliveryDate" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Remark</label>
+                                        <textarea
+                                            id="remark"
+                                            rows="2"
+                                            placeholder="Add remark for this entry"
+                                        ></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label
+                                            >Location Map (Google Maps
+                                            URL)</label
+                                        >
+                                        <input
+                                            type="url"
+                                            id="locationMap"
+                                            placeholder="https://maps.google.com/..."
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <polyline
+                                        points="20 6 9 17 4 12"
+                                    ></polyline>
+                                </svg>
+                                Create Tracking Code
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- List All Parcels View -->
+                <section id="listView" class="view-section">
+                    <div class="table-card">
+                        <div class="table-header">
+                            <h2>All Parcels</h2>
+                            <div class="table-actions">
+                                <input
+                                    type="text"
+                                    id="searchParcels"
+                                    placeholder="Search tracking code..."
+                                    class="search-input"
+                                />
+                                <button
+                                    class="btn-refresh"
+                                    onclick="loadAllParcels()"
+                                >
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <polyline
+                                            points="23 4 23 10 17 10"
+                                        ></polyline>
+                                        <polyline
+                                            points="1 20 1 14 7 14"
+                                        ></polyline>
+                                        <path
+                                            d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+                                        ></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table id="parcelsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Tracking Code</th>
+                                        <th>Sender</th>
+                                        <th>Receiver</th>
+                                        <th>Status</th>
+                                        <th>Location</th>
+                                        <th>Est. Delivery</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="parcelsTableBody">
+                                    <!-- Rows will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Update Status View -->
+                <section id="updateView" class="view-section">
+                    <div class="form-card">
+                        <h2>Update Parcel Status</h2>
+                        <form id="updateStatusForm">
+                            <div class="form-group">
+                                <label>Search Tracking Code</label>
+                                <div class="input-with-button">
+                                    <input
+                                        type="text"
+                                        id="updateTrackingCode"
+                                        placeholder="Enter tracking code"
+                                    />
+                                    <button
+                                        type="button"
+                                        class="btn-search"
+                                        onclick="searchParcelForUpdate()"
+                                    >
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="updateFormContent" style="display: none">
+                                <div class="form-section">
+                                    <h3>Update Status</h3>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>New Status</label>
+                                            <select id="updateStatus" required>
+                                                <option value="">
+                                                    Select Status
+                                                </option>
+                                                <option value="pending">
+                                                    Pending Pickup
+                                                </option>
+                                                <option value="collected">
+                                                    Collected
+                                                </option>
+                                                <option value="in-transit">
+                                                    In Transit
+                                                </option>
+                                                <option value="on-hold">
+                                                    On Hold
+                                                </option>
+                                                <option
+                                                    value="out-for-delivery"
+                                                >
+                                                    Out for Delivery
+                                                </option>
+                                                <option value="delivered">
+                                                    Delivered
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Current Location</label>
+                                            <input
+                                                type="text"
+                                                id="updateLocation"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Arrival Date</label>
+                                            <input
+                                                type="date"
+                                                id="updateArrivalDate"
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Delivery Date</label>
+                                            <input
+                                                type="date"
+                                                id="updateDeliveryDate"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Location Map URL</label>
+                                            <input
+                                                type="url"
+                                                id="updateLocationMap"
+                                                placeholder="https://maps.google.com/..."
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Update Message</label>
+                                        <textarea
+                                            id="updateMessage"
+                                            rows="3"
+                                            placeholder="Add a note about this update..."
+                                        ></textarea>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn-submit">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                        ></path>
+                                        <path
+                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                        ></path>
+                                    </svg>
+                                    Update Status
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Invoice View -->
+                <section id="invoiceView" class="view-section">
+                    <div class="form-card">
+                        <h2>Invoice Management</h2>
+                        <form id="invoiceSearchForm">
+                            <div class="form-group">
+                                <label>Search Tracking Code</label>
+                                <div class="input-with-button">
+                                    <input
+                                        type="text"
+                                        id="invoiceTrackingCode"
+                                        placeholder="Enter tracking code"
+                                    />
+                                    <button
+                                        type="button"
+                                        class="btn-search"
+                                        onclick="loadInvoiceData()"
+                                    >
+                                        Load Invoice
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="invoiceContent" style="display: none">
+                            <div class="invoice-actions">
+                                <button class="btn-edit-invoice" onclick="toggleEditMode()">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                    </svg>
+                                    Edit Invoice
+                                </button>
+                                <button class="btn-print-invoice" onclick="printInvoice()">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                        <rect x="6" y="14" width="12" height="8"></rect>
+                                    </svg>
+                                    Print Invoice
+                                </button>
+                                <button class="btn-save-pdf" onclick="saveAsPDF()">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                    Save as PDF
+                                    <!-- Invoice Preview -->
+                                                            <div id="invoicePreview" class="invoice-preview">
+                                                                <!-- Invoice content will be generated here -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </main>
+
+                                        <!-- Firebase SDK -->
+                                        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+                                        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+                                        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+                                        <!-- Firebase Config Inline -->
+                                        <script>
+                                            // Replace with your actual Firebase config
+                                            const firebaseConfig = {
+  apiKey: "AIzaSyBezEo8agPiNcIQfvNlc_pgbmsIFuMKvKI",
+  authDomain: "transnova-courier.firebaseapp.com",
+  databaseURL: "https://transnova-courier-default-rtdb.firebaseio.com",
+  projectId: "transnova-courier",
+  storageBucket: "transnova-courier.firebasestorage.app",
+  messagingSenderId: "1056361776460",
+  appId: "1:1056361776460:web:ca3d01062bb69ccdc0fbe9"
+};
+
+                                            // Initialize Firebase
+                                            let app, auth, database;
+                                            try {
+                                                app = firebase.initializeApp(firebaseConfig);
+                                                auth = firebase.auth();
+                                                database = firebase.database();
+                                                console.log("✅ Firebase initialized successfully");
+                                            } catch (error) {
+                                                console.error("❌ Firebase initialization error:", error);
+                                            }
+
+                                            // Helper Functions
+                                            const FirebaseDB = {
+                                                createParcel: async (trackingCode, parcelData) => {
+                                                    try {
+                                                        await database.ref("parcels/" + trackingCode).set({
+                                                            ...parcelData,
+                                                            createdAt: firebase.database.ServerValue.TIMESTAMP,
+                                                            updatedAt: firebase.database.ServerValue.TIMESTAMP,
+                                                        });
+                                                        return {
+                                                            success: true,
+                                                            message: "Parcel created successfully",
+                                                        };
+                                                    } catch (error) {
+                                                        console.error("Error creating parcel:", error);
+                                                        return { success: false, message: error.message };
+                                                    }
+                                                },
+                                                getParcel: async (trackingCode) => {
+                                                    try {
+                                                        const snapshot = await database
+                                                            .ref("parcels/" + trackingCode)
+                                                            .once("value");
+                                                        if (snapshot.exists()) {
+                                                            return { success: true, data: snapshot.val() };
+                                                        } else {
+                                                            return {
+                                                                success: false,
+                                                                message: "Tracking code not found",
+                                                            };
+                                                        }
+                                                    } catch (error) {
+                                                        console.error("Error fetching parcel:", error);
+                                                        return { success: false, message: error.message };
+                                                    }
+                                                },
+                                                updateParcel: async (trackingCode, updates) => {
+                                                    try {
+                                                        await database.ref("parcels/" + trackingCode).update({
+                                                            ...updates,
+                                                            updatedAt: firebase.database.ServerValue.TIMESTAMP,
+                                                        });
+                                                        return {
+                                                            success: true,
+                                                            message: "Parcel updated successfully",
+                                                        };
+                                                    } catch (error) {
+                                                        console.error("Error updating parcel:", error);
+                                                        return { success: false, message: error.message };
+                                                    }
+                                                },
+                                                addTrackingHistory: async (trackingCode, historyEntry) => {
+                                                    try {
+                                                        const historyRef = database.ref(
+                                                            "parcels/" + trackingCode + "/history",
+                                                        );
+                                                        await historyRef.push({
+                                                            ...historyEntry,
+                                                            timestamp: firebase.database.ServerValue.TIMESTAMP,
+                                                        });
+                                                        return {
+                                                            success: true,
+                                                            message: "History added successfully",
+                                                        };
+                                                    } catch (error) {
+                                                        console.error("Error adding history:", error);
+                                                        return { success: false, message: error.message };
+                                                    }
+                                                },
+
+                                                addShippingHistoryEntry: async (trackingCode, entry) => {
+                                                    try {
+                                                        // Get current parcel data
+                                                        const snapshot = await database
+                                                            .ref("parcels/" + trackingCode)
+                                                            .once("value");
+                                                        if (!snapshot.exists()) {
+                                                            return {
+                                                                success: false,
+                                                                message: "Parcel not found",
+                                                            };
+                                                        }
+
+                                                        const parcelData = snapshot.val();
+                                                        let shippingHistory = parcelData.shippingHistory || [];
+
+                                                        // Convert to array if it's an object
+                                                        if (!Array.isArray(shippingHistory)) {
+                                                            shippingHistory = Object.values(shippingHistory);
+                                                        }
+
+                                                        // Add new entry
+                                                        shippingHistory.push(entry);
+
+                                                        // Update the parcel with new history
+                                                        await database.ref("parcels/" + trackingCode).update({
+                                                            shippingHistory: shippingHistory,
+                                                            updatedAt: firebase.database.ServerValue.TIMESTAMP,
+                                                        });
+
+                                                        return {
+                                                            success: true,
+                                                            message: "Shipping history updated",
+                                                        };
+                                                    } catch (error) {
+                                                        console.error("Error adding shipping history:", error);
+                                                        return { success: false, message: error.message };
+                                                    }
+                                                },
+                                                getAllParcels: async () => {
+                                                    try {
+                                                        const snapshot = await database
+                                                            .ref("parcels")
+                                                            .once("value");
+                                                        const parcels = [];
+                                                        snapshot.forEach((child) => {
+                                                            parcels.push({
+                                                                trackingCode: child.key,
+                                                                ...child.val(),
+                                                            });
+                                                        });
+                                                        return { success: true, data: parcels };
+                                                    } catch (error) {
+                                                        console.error("Error fetching all parcels:", error);
+                                                        return { success: false, message: error.message };
+                                                    }
+                                                },
+                                                deleteParcel: async (trackingCode) => {
+                                                    try {
+                                                        await database.ref("parcels/" + trackingCode).remove();
+                                                        return {
+                                                            success: true,
+                                                            message: "Parcel deleted successfully",
+                                                        };
+                                                    } catch (error) {
+                                                        console.error("Error deleting parcel:", error);
+                                                        return { success: false, message: error.message };
+                                                    }
+                                                },
+                                            };
+
+                                            const FirebaseAuth = {
+                                                signOut: async () => {
+                                                    try {
+                                                        await auth.signOut();
+                                                        return { success: true };
+                                                    } catch (error) {
+                                                        console.error("Sign out error:", error);
+                                                        return { success: false, message: error.message };
+                                                    }
+                                                },
+                                                onAuthStateChanged: (callback) => {
+                                                    auth.onAuthStateChanged(callback);
+                                                },
+                                                getCurrentUser: () => {
+                                                    return auth.currentUser;
+                                                },
+                                            };
+
+                                            function generateTrackingCode() {
+                                                const prefix = "TNV";
+                                                const timestamp = Date.now().toString(36).toUpperCase();
+                                                const random = Math.random()
+                                                    .toString(36)
+                                                    .substr(2, 5)
+                                                    .toUpperCase();
+                                                return `${prefix}${timestamp}${random}`;
+                                            }
+                                        </script>
+
+                                        <!-- Admin JS -->
+                                        <script src="admin.js"></script>
+</body>
+</html>

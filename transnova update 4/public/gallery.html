@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gallery - TransNova Couriers</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto:wght@400;700;900&family=Raleway:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="pages-styles.css" />
+    </head>
+    <body>
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <div class="language-selector" id="languageSelector">
+                <div class="globe-icon">🌐</div>
+                <span class="language-text">Select Language</span>
+                <div class="language-dropdown" id="languageDropdown">
+                    <div class="language-option" data-lang="en">English</div>
+                    <div class="language-option" data-lang="es">Español</div>
+                    <div class="language-option" data-lang="fr">Français</div>
+                    <div class="language-option" data-lang="de">Deutsch</div>
+                    <div class="language-option" data-lang="zh">中文</div>
+                    <div class="language-option" data-lang="ar">العربية</div>
+                </div>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="menu-bar"></div>
+                <div class="menu-bar"></div>
+                <div class="menu-bar"></div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="menu-item" data-page="index.html">Home</div>
+            <div class="menu-item" data-page="services.html">Services</div>
+            <div class="menu-item" data-page="why-choose-us.html">
+                Why Choose Us
+            </div>
+            <div class="menu-item" data-page="process.html">Our Process</div>
+            <div class="menu-item" data-page="testimonials.html">
+                Testimonials
+            </div>
+            <div class="menu-item" data-page="gallery.html">Gallery</div>
+            <div class="menu-item" data-page="contact.html">Contact</div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="page-title">GALLERY</h1>
+                <p class="page-subtitle">Our Fleet & Facilities in Action</p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <div class="gallery-container">
+                <div class="section-intro">
+                    <h2 class="section-heading">Our Operations</h2>
+                    <p class="section-description">
+                        Explore our state-of-the-art fleet and facilities that
+                        power deliveries worldwide
+                    </p>
+                </div>
+
+                <div class="gallery-grid">
+                    <!-- Trucks -->
+                    <div
+                        class="gallery-item"
+                        data-category="trucks"
+                        onclick="openLightbox(this)"
+                    >
+                        <img
+                            src=/images/road-fleet.jpg
+                            auto=compress&cs=tinysrgb&w=800"
+                            alt="Delivery Truck"
+                        />
+                        <div class="gallery-overlay">
+                            <h3>Road Transport Fleet</h3>
+                            <p>Modern delivery trucks</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="gallery-item"
+                        data-category="trucks"
+                        onclick="openLightbox(this)"
+                    >
+                        <img
+                            src=/images/heavy-trucks.jpg
+                            auto=compress&cs=tinysrgb&w=800"
+                            alt="Heavy Truck"
+                        />
+                        <div class="gallery-overlay">
+                            <h3>Heavy Duty Transport</h3>
+                            <p>Long distance hauling</p>
+                        </div>
+                    </div>
+
+                    <!-- Planes -->
+                    <div
+                        class="gallery-item"
+                        data-category="planes"
+                        onclick="openLightbox(this)"
+                    >
+                        <img
+                            src="https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Cargo Plane"
+                        />
+                        <div class="gallery-overlay">
+                            <h3>Air Freight Operations</h3>
+                            <p>Express air delivery</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="gallery-item"
+                        data-category="planes"
+                        onclick="openLightbox(this)"
+                    >
+                        <img
+                            src=/images/cargo-plane.jpg
+                            auto=compress&cs=tinysrgb&w=800"
+                            alt="Cargo Aircraft"
+                        />
+                        <div class="gallery-overlay">
+                            <h3>International Cargo</h3>
+                            <p>Global air network</p>
+                        </div>
+                    </div>
+
+                    <!-- Ships -->
+                    <div
+                        class="gallery-item"
+                        data-category="ships"
+                        onclick="openLightbox(this)"
+                    >
+                        <img
+                            src="https://images.pexels.com/photos/906982/pexels-photo-906982.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Cargo Ship"
+                        />
+                        <div class="gallery-overlay">
+                            <h3>Ocean Freight</h3>
+                            <p>Container shipping</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="gallery-item"
+                        data-category="ships"
+                        onclick="openLightbox(this)"
+                    >
+                        <img
+                            src="https://images.pexels.com/photos/262353/pexels-photo-262353.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Port Operations"
+                        />
+                        <div class="gallery-overlay">
+                            <h3>Port Operations</h3>
+                            <p>Maritime logistics</p>
+                        </div>
+                    </div>
+
+                    <!-- Warehouse -->
+                    <div
+                        class="gallery-item"
+                        data-category="warehouse"
+                        onclick="openLightbox(this)"
+                    >
+                        <img
+                            src="https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Warehouse Interior"
+                        />
+                        <div class="gallery-overlay">
+                            <h3>Storage Facilities</h3>
+                            <p>Modern warehousing</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="gallery-item"
+                        data-category="warehouse"
+                        onclick="openLightbox(this)"
+                    >
+                        <img
+                            src="https://images.pexels.com/photos/4246120/pexels-photo-4246120.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Warehouse Operations"
+                        />
+                        <div class="gallery-overlay">
+                            <h3>Sorting Center</h3>
+                            <p>Automated processing</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="gallery-item"
+                        data-category="warehouse"
+                        onclick="openLightbox(this)"
+                    >
+                        <img
+                            src="https://images.pexels.com/photos/4391470/pexels-photo-4391470.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Distribution Center"
+                        />
+                        <div class="gallery-overlay">
+                            <h3>Distribution Hub</h3>
+                            <p>Order fulfillment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <button
+                class="lightbox-nav prev"
+                onclick="navigateLightbox(-1, event)"
+            >
+                ‹
+            </button>
+            <button
+                class="lightbox-nav next"
+                onclick="navigateLightbox(1, event)"
+            >
+                ›
+            </button>
+            <div class="lightbox-content">
+                <img id="lightbox-img" src="" alt="" />
+                <div class="lightbox-caption">
+                    <h3 id="lightbox-title"></h3>
+                    <p id="lightbox-description"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-grid">
+                    <div class="footer-info">
+                        <div class="footer-logo">
+                            <img src="images/logo.png" alt="TransNova Logo" />
+                            <h3>TRANSNOVA</h3>
+                        </div>
+                        <p>
+                            Global logistics and courier solutions delivered
+                            with precision and care.
+                        </p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="services.html">Services</a>
+                        <a href="why-choose-us.html">Why Choose Us</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 TransNova Couriers. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <button id="backToTop" class="back-to-top" title="Back to top">
+            <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path d="M18 15l-6-6-6 6" />
+            </svg>
+        </button>
+
+        <script src="script.js"></script>
+        <script src="pages-script.js"></script>
+    </body>
+</html>
